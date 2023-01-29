@@ -1,0 +1,77 @@
+<html>
+  <head>
+    <title>DTP Minting App</title>
+    <style>
+	#container {
+      background-image: url("https://dannychrost.github.io/token-project/bridge.jpg");
+	background-size: cover;
+	background-position: center;
+	border: solid 5px red;
+	width: 100%;
+	height: 100%;
+	font-size: 44px; /* This makes the text larger */
+	text-shadow: 4px 4px white; /* This gives the text a white outline */
+	font-family: "Playfair Display", serif;
+	display: flex;
+	align-items: center; /* this will center the elements vertically */
+	justify-content: center; /* this will center the elements horizontally */
+	flex-direction: column; /* this will make the elements stack vertically */
+	    }
+      
+      input {
+        display: block;
+        margin: 10px 0;
+        width: 200px;
+        font-size: 16px;
+        padding: 8px;
+        border: 1px solid #ccc;
+	font-family: "Playfair Display", serif;
+      }
+      button {
+        width: 80px;
+        font-size: 16px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        background: #eee;
+	cursor: pointer;
+	font-family: "Playfair Display", serif;
+      }
+    </style>
+  </head>
+  <body>
+   <div id="container">
+    <h1>DTP Minting App</h1>
+    <p>Enter the amount of tokens to mint:</p>
+    <input type="text" class="pointer-cursor" id="amountInput" />
+    <button onclick="mintTokens()">Mint</button>
+   </div>
+  </body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script>
+      async function mintTokens() {
+	// Request permission to access accounts
+  	await window.ethereum.enable();
+  	// Initialize web3
+  	const web3 = new Web3(window.ethereum);
+	      
+        // Get the amount of tokens to mint
+        const amount = document.getElementById("amountInput").value;
+        // Load the contract ABI and address
+        const contractABI = 
+        const contractAddress = '';
+	const privateKey = '';
+        // Create a new contract instance
+        const contract = new web3.eth.Contract(contractABI, contractAddress);
+        // Get the account that will be used to mint the tokens
+        const account = web3.eth.accounts.privateKeyToAccount(privateKey);
+        // Set the options for the transaction
+        const options = {
+          from: account.address,
+          gas: 2000000,
+        };
+        // Call the mint function and send the transaction
+        const result = await contract.methods.mint('',amount).send(options);
+        console.log(result);
+      }
+    </script>   
